@@ -3,6 +3,9 @@
 ## Visão geral
 
 ```
+Login / cadastro (Supabase Auth)
+     │  usuário autenticado
+     ▼
 Áudio da aula
      │
      ▼
@@ -16,6 +19,10 @@
 ```
 
 ## Componentes
+
+### 0. Acesso
+- Cadastro e login com e-mail e senha pelo Supabase Auth, com código de convite no cadastro.
+- Ver [autenticacao.md](autenticacao.md).
 
 ### 1. Transcrição
 - **Opção inicial:** Whisper (open source; roda local ou via API).
