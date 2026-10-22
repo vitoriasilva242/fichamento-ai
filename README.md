@@ -20,13 +20,14 @@ Durante a aula, é difícil prestar atenção e anotar ao mesmo tempo. Depois, a
 
 ## Status
 
-🚧 Em planejamento: definindo escopo do MVP e arquitetura.
+🚧 MVP em construção: Streamlit + Groq (Whisper) + Gemini, hospedado no Streamlit Community Cloud.
 
 ## Documentação
 
 - [Spec do MVP](docs/spec-mvp.md)
 - [Arquitetura](docs/arquitetura.md)
 - [Registro de decisões](docs/decisoes.md)
+- [Como colocar no ar](docs/deploy.md)
 
 ## Autora
 
