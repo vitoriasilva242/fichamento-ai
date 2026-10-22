@@ -1,0 +1,28 @@
+# Segredos
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+
+# Node
+node_modules/
+dist/
+build/
+
+# Áudios e transcrições de teste (podem conter dados pessoais)
+data/
+*.mp3
+*.m4a
+*.wav
+
+# Sistema / editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
