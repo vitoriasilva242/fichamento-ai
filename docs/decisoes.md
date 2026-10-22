@@ -20,22 +20,29 @@ Formato: cada decisão registra o contexto, o que foi decidido e o porquê. Deci
 - **Por quê:** a qualidade do fichamento é o produto; o resto é infraestrutura.
 
 ## D004 · Serviço de transcrição
-- **Status:** decidido (2026-10-21)
-- **Decisão:** Whisper rodando localmente no Mac (mlx-whisper, otimizado para Apple Silicon). Fallback: API gratuita da Groq (whisper-large-v3).
-- **Por quê:** custo zero, sem limite de uso e o áudio não sai do computador.
+- **Status:** decidido (2026-10-21, revisado)
+- **Decisão:** API gratuita da Groq (whisper-large-v3-turbo). O áudio é comprimido e dividido em partes antes do envio, por causa do limite de tamanho de arquivo do plano gratuito.
+- **Alternativa:** enviar o áudio direto ao Gemini, que transcreve e gera o fichamento numa chamada só.
+- **Por quê:** o app roda na nuvem e não deve depender do computador da usuária; servidores gratuitos são fracos demais para rodar o Whisper.
 
-## D005 · Stack da aplicação
-- **Status:** decidido (2026-10-21)
-- **Decisão:** Python + Streamlit, rodando localmente.
-- **Por quê:** zero custo de hospedagem, uma linguagem só e interface pronta para upload e visualização. Migrar para web (FastAPI + front) só se o app for aberto a outras pessoas.
+## D005 · Stack e hospedagem
+- **Status:** decidido (2026-10-21, revisado)
+- **Decisão:** Python + Streamlit, hospedado no Streamlit Community Cloud (gratuito), com deploy automático a partir deste repositório no GitHub.
+- **Por quê:** custo zero, uma linguagem só, abre no navegador do computador e do celular, e permite gravar áudio direto pelo navegador.
+- **Alternativa:** Hugging Face Spaces (também gratuito).
+- **Cuidado:** as chaves de API ficam nos *secrets* do Streamlit, nunca no código. O app terá senha de acesso, para outras pessoas não consumirem a cota gratuita.
 
 ## D006 · Restrição de custo zero
 - **Status:** decidido (2026-10-21)
 - **Decisão:** o MVP não pode ter custo de implementação ou operação.
-- **Consequências:** transcrição local; LLM via plano gratuito; app roda localmente; RAG com embeddings locais.
+- **Consequências:** só serviços com plano gratuito; nada roda no computador da usuária.
 
 ## D007 · Modelo para gerar o fichamento
 - **Status:** decidido (2026-10-21)
-- **Decisão:** Gemini Flash pelo plano gratuito da API do Google, atrás de uma interface própria (`gerar_fichamento(transcricao)`) para poder trocar de provedor depois. Alternativa offline: modelo local via Ollama.
+- **Decisão:** Gemini Flash pelo plano gratuito da API do Google, atrás de uma interface própria (`gerar_fichamento(transcricao)`) para poder trocar de provedor depois.
 - **Fase de validação do prompt:** feita manualmente no Claude (chat), sem custo extra.
-- **Atenção:** no plano gratuito do Gemini, o Google pode usar os dados enviados para melhorar os produtos. Não enviar gravações com dados sensíveis. A API do Claude é paga; fica como opção futura.
+- **Atenção:** no plano gratuito do Gemini, o Google pode usar os dados enviados para melhorar os produtos. A API do Claude é paga; fica como opção futura.
+
+## D008 · Armazenamento
+- **Status:** decidido (2026-10-21)
+- **Decisão:** no MVP, sem banco de dados: o fichamento é exibido e baixado em Markdown. Histórico de aulas fica para depois (ex.: Supabase, plano gratuito).
