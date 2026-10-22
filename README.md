@@ -8,7 +8,7 @@ Durante a aula, é difícil prestar atenção e anotar ao mesmo tempo. Depois, a
 
 ## A proposta
 
-1. O usuário envia a gravação da aula.
+1. O usuário cria uma conta (com código de convite), entra e envia a gravação da aula.
 2. O áudio é transcrito.
 3. Um modelo de linguagem (Claude) organiza a transcrição em um fichamento com:
    - tópicos da aula e resumo
@@ -20,13 +20,14 @@ Durante a aula, é difícil prestar atenção e anotar ao mesmo tempo. Depois, a
 
 ## Status
 
-🚧 MVP em construção: Streamlit + Groq (Whisper) + Gemini, hospedado no Streamlit Community Cloud.
+🚧 MVP em construção: Streamlit + Groq (Whisper) + Gemini, hospedado no Streamlit Community Cloud, com login e cadastro de usuários pelo Supabase Auth.
 
 ## Documentação
 
 - [Spec do MVP](docs/spec-mvp.md)
 - [Arquitetura](docs/arquitetura.md)
 - [Registro de decisões](docs/decisoes.md)
+- [Login e cadastro de usuários](docs/autenticacao.md)
 - [Como colocar no ar](docs/deploy.md)
 
 ## Autora
