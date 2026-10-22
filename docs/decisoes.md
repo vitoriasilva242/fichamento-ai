@@ -20,9 +20,22 @@ Formato: cada decisão registra o contexto, o que foi decidido e o porquê. Deci
 - **Por quê:** a qualidade do fichamento é o produto; o resto é infraestrutura.
 
 ## D004 · Serviço de transcrição
-- **Status:** pendente
-- **Opções:** Whisper (local/API), Deepgram, AssemblyAI.
+- **Status:** decidido (2026-10-21)
+- **Decisão:** Whisper rodando localmente no Mac (mlx-whisper, otimizado para Apple Silicon). Fallback: API gratuita da Groq (whisper-large-v3).
+- **Por quê:** custo zero, sem limite de uso e o áudio não sai do computador.
 
 ## D005 · Stack da aplicação
-- **Status:** pendente
-- **Opções a considerar:** backend em Python (FastAPI) + front simples; ou framework full-stack.
+- **Status:** decidido (2026-10-21)
+- **Decisão:** Python + Streamlit, rodando localmente.
+- **Por quê:** zero custo de hospedagem, uma linguagem só e interface pronta para upload e visualização. Migrar para web (FastAPI + front) só se o app for aberto a outras pessoas.
+
+## D006 · Restrição de custo zero
+- **Status:** decidido (2026-10-21)
+- **Decisão:** o MVP não pode ter custo de implementação ou operação.
+- **Consequências:** transcrição local; LLM via plano gratuito; app roda localmente; RAG com embeddings locais.
+
+## D007 · Modelo para gerar o fichamento
+- **Status:** decidido (2026-10-21)
+- **Decisão:** Gemini Flash pelo plano gratuito da API do Google, atrás de uma interface própria (`gerar_fichamento(transcricao)`) para poder trocar de provedor depois. Alternativa offline: modelo local via Ollama.
+- **Fase de validação do prompt:** feita manualmente no Claude (chat), sem custo extra.
+- **Atenção:** no plano gratuito do Gemini, o Google pode usar os dados enviados para melhorar os produtos. Não enviar gravações com dados sensíveis. A API do Claude é paga; fica como opção futura.
